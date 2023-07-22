@@ -1,6 +1,6 @@
 ---
 
-- name: remove aether 5gc
+- name: remove aether 4gc
   kubernetes.core.helm:
     name: sd-core
     release_namespace: omec

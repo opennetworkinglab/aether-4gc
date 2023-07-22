@@ -44,16 +44,16 @@
 - debug:
     var: "ran_subnet"
 
-- name: remove /tmp/sdcore-5g-values.yaml
+- name: remove /tmp/sdcore-4g-values.yaml
   file:
-    path: "/tmp/sdcore-5g-values.yaml"
+    path: "/tmp/sdcore-4g-values.yaml"
     state: absent
   when: inventory_hostname in groups['master_nodes']
 
-- name: copy {{ core.values_file }} to /tmp/sdcore-5g-values.yaml
+- name: copy {{ core.values_file }} to /tmp/sdcore-4g-values.yaml
   template:
     src: "{{ core.values_file }}"
-    dest: "/tmp/sdcore-5g-values.yaml"
+    dest: "/tmp/sdcore-4g-values.yaml"
   when: inventory_hostname in groups['master_nodes']
 
 # - name: update aether 5gc helm dependencies
@@ -62,9 +62,9 @@
 #   when: inventory_hostname in groups['master_nodes']
 
 # TODO: add systems check to avoid issues (e.g., mongodb needing avx support)
-- name: deploy aether 5gc
+- name: deploy aether 4gc
   block:
-    - name: deploy aether 5gc
+    - name: deploy aether 4gc
       kubernetes.core.helm:
         update_repo_cache: true
         name: sd-core
@@ -73,7 +73,7 @@
         chart_ref: "{{ core.helm.chart_ref }}"
         chart_version: "{{ core.helm.chart_version }}"
         values_files:
-          - /tmp/sdcore-5g-values.yaml
+          - /tmp/sdcore-4g-values.yaml
         wait: true
         wait_timeout: "1m30s"
         force: true
