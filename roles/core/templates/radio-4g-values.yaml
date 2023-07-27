@@ -45,7 +45,7 @@ omec-sub-provision:
       cfgFiles:
         simapp.yaml:
           configuration:
-            provision-network-slice: {{ core.standalone }}
+            provision-network-slice: ${SA_CORE}
             sub-provision-endpt:
               addr: config4g.omec.svc.cluster.local
             # sub-proxy-endpt:
@@ -145,14 +145,14 @@ omec-user-plane:
       cniPlugin: macvlan
       ipam: static
       routes:
-        - to: {{ ansible_default_ipv4.address }}
+        - to: ${NODE_IP}
           via: 169.254.1.1
       enb:
-        subnet: {{ ran_subnet }} # Subnet for the gNB network
+        subnet: ${RAN_SUBNET}
       access:
-        iface:  {{ core.data_iface }}
+        iface: ${DATA_IFACE}
       core:
-        iface: {{ core.data_iface }}
+        iface: ${DATA_IFACE}
       cfgFiles:
         upf.json:
           mode: af_packet
