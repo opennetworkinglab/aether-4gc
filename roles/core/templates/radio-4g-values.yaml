@@ -134,6 +134,9 @@ omec-user-plane:
   enable: true
   images:
     repository: "registry.opennetworking.org/docker.io/"
+    # following two lines pull busybox from Docker Hub instead of Aether Registry
+    tags:
+      tools: busybox:stable
   resources:
     enabled: false
   config:
