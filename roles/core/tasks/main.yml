@@ -1,9 +1,9 @@
 ---
 
 - name: install 4gc/core
-  include: roles/core/tasks/install.yml
+  import_tasks: roles/core/tasks/install.yml
   tags: install
 
 - name: uninstall 4gc/core
-  include: roles/core/tasks/uninstall.yml
+  import_tasks: roles/core/tasks/uninstall.yml
   tags: uninstall
