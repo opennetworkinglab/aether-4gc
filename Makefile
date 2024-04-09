@@ -22,7 +22,7 @@ export HOSTS_INI_FILE ?= $(4GC_ROOT_DIR)/hosts.ini
 4gc-uninstall: 4gc-core-uninstall 4gc-router-uninstall
 
 #### c. Provision router ####
-4gc-router-install: 
+4gc-router-install:
 	ansible-playbook -i $(HOSTS_INI_FILE) $(4GC_ROOT_DIR)/router.yml --tags install \
 		--extra-vars "ROOT_DIR=$(ROOT_DIR)" --extra-vars $(EXTRA_VARS)
 4gc-router-uninstall:
@@ -30,7 +30,7 @@ export HOSTS_INI_FILE ?= $(4GC_ROOT_DIR)/hosts.ini
 		--extra-vars "ROOT_DIR=$(ROOT_DIR)" --extra-vars $(EXTRA_VARS)
 
 #### d. Provision core ####
-4gc-core-install: 
+4gc-core-install:
 	ansible-playbook -i $(HOSTS_INI_FILE) $(4GC_ROOT_DIR)/core.yml --tags install \
 		--extra-vars "ROOT_DIR=$(ROOT_DIR)" --extra-vars $(EXTRA_VARS)
 4gc-core-uninstall:

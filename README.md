@@ -20,7 +20,7 @@ To install the 4g-core, follow these steps:
    - Set the "standalone" parameter to deploy the core independently from roc.
    - Specify the "data_iface" parameter as the network interface name of the machine.
    - Set the "values_file" parameter:
-     - Use "sdcore-4g-values.yaml" 
+     - Use "sdcore-4g-values.yaml"
    - The "custom_ran_subnet" parameter, if left empty, core will use the subnet of "data_iface" for UPF.
 2. Add the hosts to the init file.
 3. Run `make ansible`.
