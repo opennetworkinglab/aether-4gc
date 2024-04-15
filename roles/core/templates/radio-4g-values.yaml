@@ -5,7 +5,7 @@
 omec-control-plane:
   enable4G: true
   images:
-    repository: "registry.opennetworking.org/docker.io/"
+    repository: ""    # defaults to Docker Hub
   # cassandra values
   cassandra:
     config:
@@ -39,7 +39,7 @@ omec-control-plane:
 omec-sub-provision:
   enable: true
   images:
-    repository: "registry.opennetworking.org/docker.io/"
+    repository: ""    # defaults to Docker Hub
   config:
     simapp:
       cfgFiles:
@@ -133,7 +133,7 @@ omec-sub-provision:
 omec-user-plane:
   enable: true
   images:
-    repository: "registry.opennetworking.org/docker.io/"
+    repository: ""    # defaults to Docker Hub
     # following two lines pull busybox from Docker Hub instead of Aether Registry
     tags:
       tools: busybox:stable
