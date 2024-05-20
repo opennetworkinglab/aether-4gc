@@ -157,7 +157,7 @@ omec-user-plane:
       core:
         iface: {{ core.data_iface }}
       cfgFiles:
-        upf.json:
+        upf.jsonc:
           mode: af_packet
           hwcksum: true
 
