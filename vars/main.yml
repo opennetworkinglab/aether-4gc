@@ -1,5 +1,5 @@
 core:
-  standalone: "true"
+  standalone: true
   data_iface: ens18
   values_file: "templates/core/sdcore-4g-values.yaml"
   ran_subnet: "172.20.0.0/16" # set it to empty to get subnet from 'data_iface'

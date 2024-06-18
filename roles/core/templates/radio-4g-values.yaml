@@ -45,7 +45,7 @@ omec-sub-provision:
       cfgFiles:
         simapp.yaml:
           configuration:
-            provision-network-slice: {{ core.standalone }}
+            provision-network-slice: {{ core.standalone | string }}
             sub-provision-endpt:
               addr: config4g.omec.svc.cluster.local
             # sub-proxy-endpt:
