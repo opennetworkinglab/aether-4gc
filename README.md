@@ -21,7 +21,7 @@ To install the 4g-core, follow these steps:
    - Specify the "data_iface" parameter as the network interface name of the machine.
    - Set the "values_file" parameter:
      - Use "sdcore-4g-values.yaml"
-   - The "custom_ran_subnet" parameter, if left empty, core will use the subnet of "data_iface" for UPF.
+   - The "ran_subnet" parameter, if left empty, core will use the subnet of "data_iface" for UPF.
 2. Add the hosts to the init file.
 3. Run `make ansible`.
 4. In the running Ansible docker terminal:
