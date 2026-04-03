@@ -26,6 +26,10 @@
     dest: "/tmp/sdcore-4g-values.yaml"
   when: inventory_hostname in groups['master_nodes']
 
+- set_fact:
+    core_helm_requires_repo_update: "{{ not (core.helm.chart_ref is match('^oci://')) }}"
+  when: inventory_hostname in groups['master_nodes']
+
 # - name: update aether 5gc helm dependencies
 #   shell: |
 #     helm dep up "{{ core.helm.chart_ref }}"
@@ -36,7 +40,7 @@
   block:
     - name: deploy aether 4gc
       kubernetes.core.helm:
-        update_repo_cache: true
+        update_repo_cache: "{{ core_helm_requires_repo_update }}"
         name: sd-core
         release_namespace: omec
         create_namespace: true
@@ -59,8 +63,12 @@
     - name: restart Pods if not running
       shell: |
         while IFS= read -r line; do
+          [[ -z "$line" ]] && continue
+
           name=$(echo "$line" | awk '{print $1}')
           status=$(echo "$line" | awk '{print $3}')
+
+          [[ -z "$name" || "$name" == "NAME" ]] && continue
 
           if [[ "$status" != "Running" ]]; then
             kubectl delete pod "$name" -n omec
@@ -68,6 +76,8 @@
         done <<< "{{ pod_status.stdout }}"
       args:
         executable: /bin/bash
+      register: pod_restart
+      changed_when: "'deleted' in pod_restart.stdout"
       when: inventory_hostname in groups['master_nodes']
   always:
     - pause:
